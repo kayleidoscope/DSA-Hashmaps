@@ -1,10 +1,10 @@
 const {HashMap} = require('./hashMap')
 
+HashMap.MAX_LOAD_RATIO = 0.5
+HashMap.SIZE_RATIO = 3;
+
 function main() {
     const lotr = new HashMap()
-
-    lotr.MAX_LOAD_RATIO = 0.5;
-    lotr.SIZE_RATIO = 3;
 
     lotr.set("Hobbit", "Bilbo")
     lotr.set("Hobbit", "Frodo")
@@ -18,7 +18,7 @@ function main() {
     lotr.set("HalfElven", "Arwen")
     lotr.set("Ent", "Treebeard")
 
-    console.log(lotr.get("Ent"))
+    console.log(lotr)
 }
 
 // main()
@@ -78,17 +78,28 @@ const WhatDoesThisDo = function(){
 */
 
 function removeDuplicates(string) {
-    let map = new HashMap()
+    const map = new HashMap()
 
+    //put the string letters into the map only if they are not duplicates
     for (let i = 0; i < string.length; i++) {
         let duplicate = map.get(string[i])
+        if (duplicate === undefined) {
+            map.set(string[i], string[i])
+        }
+    }
+    let result = ""
 
-        if (duplicate) {
-            map.set(string[i])
+    //pull them out in the order of the string, but only if they are not duplicates
+    for (let j = 0; j < string.length; j++) {
+        let newLetter = map.get(string[j])
+        if (!result.includes(newLetter)) {
+            result = result + newLetter
         }
     }
 
-    console.log(map)
+    console.log(result)
 }
 
-removeDuplicates("google")
+// removeDuplicates("google")
+// removeDuplicates("google all that you think can think of")
+removeDuplicates("the quick brown fox jumps over the lazy dog")

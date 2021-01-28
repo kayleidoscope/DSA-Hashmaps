@@ -9,7 +9,7 @@ class HashMap {
     get(key) {
         const index = this._findSlot(key)
         if (this._hashTable[index] === undefined) {
-            throw new Error('Key error')
+            return undefined
         }
         return this._hashTable[index].value
     }
@@ -17,7 +17,7 @@ class HashMap {
     set(key, value) {
         const loadRatio = (this.length + this._deleted + 1) / this._capacity
         if (loadRatio > HashMap.MAX_LOAD_RATIO) {
-            this._resize(this._capacity * HashMap.MAX_LOAD_RATIO)
+            this._resize(this._capacity * HashMap.SIZE_RATIO)
         }
         const index = this._findSlot(key)
 
