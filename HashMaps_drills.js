@@ -102,4 +102,32 @@ function removeDuplicates(string) {
 
 // removeDuplicates("google")
 // removeDuplicates("google all that you think can think of")
-removeDuplicates("the quick brown fox jumps over the lazy dog")
+// removeDuplicates("the quick brown fox jumps over the lazy dog")
+
+function isItAPalindrome(string) {
+    const map = new HashMap()
+
+    for (let i = 0; i < string.length; i++) {
+        let duplicate = map.get(string[i])
+        if (duplicate === undefined) {
+            map.set(string[i], 1)
+        } else {
+            map.set(string[i], duplicate + 1)
+        }
+    }
+
+    let numOfOddNums = 0;
+
+    for (let j = 0; j < string.length; j++) {
+        let value = map.get(string[j])
+        if (value % 2 !== 0) {
+            numOfOddNums++;
+        }
+    }
+
+    if (numOfOddNums === 1) {return true}
+    return false
+}
+
+console.log(isItAPalindrome("acecarr"))
+console.log(isItAPalindrome("north"))
