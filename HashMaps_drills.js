@@ -129,5 +129,51 @@ function isItAPalindrome(string) {
     return false
 }
 
-console.log(isItAPalindrome("acecarr"))
-console.log(isItAPalindrome("north"))
+// console.log(isItAPalindrome("acecarr"))
+// console.log(isItAPalindrome("north"))
+
+function groupAnagrams(array) {
+    let allWords = []
+
+    top: for (let i = 0; i < array.length; i++) {
+        let anagrams = []
+
+        let map = new HashMap()
+
+        for (let j = 0; j < array[i].length; j++) {
+
+            //check to make sure that word hasn't already been hash-mapped
+            for (let m = 0; m < allWords.length; m++) {
+                if (allWords[m].includes(array[i])) {
+                    //if it has, continue at the top
+                    continue top
+                }
+            }
+            //make a map out of this word
+            map.set(array[i][j], array[i][j])
+        }
+
+
+        //look through each word in the array
+        for (let k = 0; k < array.length; k++) {
+            let arrayWord = array[k]
+            let mapWord = ""
+
+            //for each word, use the map to see if all letters are included in this map
+            for (let l = 0; l < array[k].length; l++) {
+                const mapLetter = map.get(array[k][l])
+                mapWord = mapWord + mapLetter
+            } 
+            //if the letters from this specific map can be used to recreate array[k],
+            //add that letter to its own array
+            if (arrayWord === mapWord) {
+                anagrams.push(arrayWord)
+            }
+        }
+        //once all relevant words have been added to their array, add them to the full array
+        allWords.push(anagrams)
+    }
+    console.log(allWords)
+}
+
+groupAnagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'])
