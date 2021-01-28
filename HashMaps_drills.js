@@ -1,10 +1,34 @@
 const {HashMap} = require('./hashMap')
+const {ChainHashMap} = require('./separateChaining')
 
 HashMap.MAX_LOAD_RATIO = 0.5
 HashMap.SIZE_RATIO = 3;
 
+ChainHashMap.MAX_LOAD_RATIO = 0.5
+ChainHashMap.SIZE_RATIO = 3;
+
 function main() {
     const lotr = new HashMap()
+
+    // lotr.set("Hobbit", "Bilbo")
+    // lotr.set("Hobbit", "Frodo")
+    // lotr.set("Wizard", "Gandalf")
+    // lotr.set("Human", "Aragorn")
+    // lotr.set("Elf", "Legolas")
+    // lotr.set("Maiar", "The Necromancer")
+    // lotr.set("Maiar", "Sauron")
+    // lotr.set("RingBearer", "Gollum")
+    // lotr.set("LadyOfLight", "Galadriel")
+    // lotr.set("HalfElven", "Arwen")
+    // lotr.set("Ent", "Treebeard")
+
+    // console.log(lotr)
+}
+
+// main()
+
+function separate() {
+    const lotr = new ChainHashMap()
 
     lotr.set("Hobbit", "Bilbo")
     lotr.set("Hobbit", "Frodo")
@@ -21,7 +45,8 @@ function main() {
     console.log(lotr)
 }
 
-// main()
+separate()
+
 
 /*
 
@@ -176,4 +201,4 @@ function groupAnagrams(array) {
     console.log(allWords)
 }
 
-groupAnagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'])
+// groupAnagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'])
