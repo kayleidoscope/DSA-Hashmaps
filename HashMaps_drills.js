@@ -74,4 +74,21 @@ const WhatDoesThisDo = function(){
           28                       15
           19                       33
           10
+
 */
+
+function removeDuplicates(string) {
+    let map = new HashMap()
+
+    for (let i = 0; i < string.length; i++) {
+        let duplicate = map.get(string[i])
+
+        if (duplicate) {
+            map.set(string[i])
+        }
+    }
+
+    console.log(map)
+}
+
+removeDuplicates("google")
